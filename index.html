@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Discord Emoji Generator</title>
+    <link rel='shortcut icon' type='image/x-icon' href='images/logo.png' />
+    <link rel="stylesheet" href="css/style.css"/>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="title">
+        <h1>Discord Emoji Generator</h1>
+    </div>
+    <textarea id="input" style="resize:none;" cols="50" rows="5" onkeydown="convert()" onclick="convert()"></textarea>
+    <br/>
+    <br/>
+    <textarea id="output" style="resize:none;" cols="50" rows="5" readonly></textarea>
+    <br/>
+    <br/>
+    <button onclick="copy()">Kopyala</button>
+    <br/>
+    <br/>
+    <script type="text/javascript">
+        var returnnum = function (ch) {
+            return [':zero: ', ':one: ', ':two: ', ':three: ', ':four: ', ':five: ', ':six: ', ':seven: ', ':eight: ', ':nine: '][Number(ch)];
+        }
+        function convert() {
+            var input = document.getElementById("input").value;
+            var output = '';
+
+            for (var i = 0; i < input.length; i++) {
+                var ch = input.charAt(i).toLowerCase();
+                if (ch.match(/^[A-Z]$/i)) { 
+                    output += ':regional_indicator_' + ch + ': ';
+                } else if (ch.match(/^[0-9]$/)) { 
+                    output += returnnum(ch);
+                } else {
+                    output += ch;
+                }
+            }
+            output = output.replace(' ', '  ');
+            document.getElementById("output").value = output;
+        }
+        function copy() {
+            document.querySelector("#output").select();
+            document.execCommand('copy');
+        }
+    </script>
+    <br>
+    <p>Zeki Arda Tarafından Yapılmıştır</p>
+    <ul id="icons">
+        <!--webpage source code-->
+        <li>
+            <a href="https://discord.com/invite/MK5uAWQUsG" target="_blank">
+                <i class="fab fa-discord"></i>
+            </a>
+        </li>
+
+        <!--project Github page-->
+        <li>
+            <a href="https://github.com/ard50500" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+    </ul>
+</body>
+
+</html>
